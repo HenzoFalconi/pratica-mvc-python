@@ -68,6 +68,6 @@ class Database:
 
 db = Database()
 db.conectar()
-db.executar('INSERT INTO tarefa (titulo) VALUES ("Teste de Tarefa")')
-print(db.consultar('SELECT * FROM tarefa'))
+#db.executar('INSERT INTO tarefa (titulo) VALUES ("Teste de Tarefa")')
+#print(db.consultar('SELECT * FROM tarefa'))
 db.desconectar()

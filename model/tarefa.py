@@ -1,6 +1,6 @@
-from model.database import Database
+from database import Database
 
-class tarefa:
+class Tarefa:
     def __init__(self, id, titulo, data_conclusão):
         self.id = id
         self.titulo = titulo
@@ -16,7 +16,7 @@ class tarefa:
         params = (self.titulo, self.data_conclusão)
         db.executar(sql, params)
         db.desconectar()
-        ]
+        
     def listarTarefas(self):
         """Retorna uma lista de tarefas cadastradas."""
         db = Database()
@@ -25,5 +25,17 @@ class tarefa:
         sql = 'SELECT id, titulo, data_conclusão FROM tarefa'  
         tarefas = db.consultar(sql)
         db.desconectar()
+        return tarefas if tarefas else []
+    
+    def apagarTarefa(self):
+        """Apaga todas as tarefas cadastrada no banco de dados."""
+        db = Database()
+        db.conectar()
 
-        return tarefas
+        sql = 'DELETE FROM tarefa WHERE id = %s'
+        params = (self.id,) # Precisa passar como tupla?
+        db.executar(sql, params)
+        db.desconectar()
+
+tarefa = Tarefa(4, 'Teste de Tarefa', None)
+tarefa.apagarTarefa()
