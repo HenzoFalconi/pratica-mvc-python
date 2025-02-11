@@ -1,4 +1,3 @@
-
 import mysql.connector as mc # Impotando a biblioteca do conector do MySQL
 from mysql.connector import Error # Importando a classe Error para tratar as mensagens de erro do código
 from dotenv import load_dotenv # Importando a função load_dotenv
@@ -69,5 +68,6 @@ class Database:
 
 db = Database()
 db.conectar()
+db.executar('INSERT INTO tarefa (titulo) VALUES ("Teste de Tarefa")')
 print(db.consultar('SELECT * FROM tarefa'))
 db.desconectar()
