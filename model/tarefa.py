@@ -29,8 +29,7 @@ class Tarefa:
         """Edita os dados da tarefa no banco de dados."""
         db = Database()
         db.conectar()
-
-        # Atualiza os campos somente se novos valores forem fornecidos
+        
         if novo_titulo:
             sql = 'UPDATE tarefa SET titulo = %s WHERE id = %s'
             db.executar(sql, (novo_titulo, self.id))

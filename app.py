@@ -31,7 +31,6 @@ def editar(idtarefa):
         tarefa.editarTarefa(novo_titulo, nova_data_conclusao)
         return redirect(url_for('index'))
 
-    # Exibe os dados da tarefa no formulário
     return render_template("editar.html", tarefa=tarefa)
 
 if __name__ == "__main__":

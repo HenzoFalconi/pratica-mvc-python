@@ -2,6 +2,7 @@
 
 {% block content %}
     <h2>Editar Tarefa</h2>
+    <link rel="stylesheet" href="{{ url_for('static', filename='jinx.css') }}">
     <form method="POST">
         <label for="titulo">Título</label>
         <input type="text" name="titulo" value="{{ tarefa.titulo }}" required>
