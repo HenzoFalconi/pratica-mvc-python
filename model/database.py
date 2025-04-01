@@ -1,7 +1,7 @@
-import mysql.connector as mc # Impotando a biblioteca do conector do MySQL
-from mysql.connector import Error # Importando a classe Error para tratar as mensagens de erro do código
-from dotenv import load_dotenv # Importando a função load_dotenv
-from os import getenv # Importando a função getenv
+import mysql.connector as mc 
+from mysql.connector import Error 
+from dotenv import load_dotenv
+from os import getenv 
 
 class Database:
     def __init__(self):
@@ -10,8 +10,8 @@ class Database:
         self.username = getenv('DB_USER')
         self.password = getenv('DB_PSWD')
         self.database = getenv('DB_NAME')
-        self.connection = None # Inicialização da conexão
-        self.cursor = None # Inicialização do cursor
+        self.connection = None
+        self.cursor = None
 
     def conectar(self):
         """Estabelece uma conexão com o banco de dados."""
@@ -45,8 +45,8 @@ class Database:
             return None
         
         try:
-            self.cursor.execute(sql,params) # Execução da instrução SQL
-            self.connection.commit() # Confirmação da transação
+            self.cursor.execute(sql,params) 
+            self.connection.commit()
             return self.cursor
         except Error as e:
             print(f'Erro de execução: {e}')
@@ -59,8 +59,7 @@ class Database:
             return None
         
         try:
-            self.cursor.execute(sql,params) # Execução da instrução SQL
-            #self.connection.commit() # Confirmação da transação
+            self.cursor.execute(sql,params) 
             return self.cursor.fetchall()
         except Error as e:
             print(f'Erro de execução: {e}')
@@ -68,6 +67,4 @@ class Database:
 
 db = Database()
 db.conectar()
-#db.executar('INSERT INTO tarefa (titulo) VALUES ("Teste de Tarefa")')
-#print(db.consultar('SELECT * FROM tarefa'))
 db.desconectar()
