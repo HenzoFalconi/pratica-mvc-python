@@ -17,7 +17,22 @@ def index():
 
 @app.route('/delete/<int:idtarefa>')
 def delete(idtarefa):
-    tarefa = Tarefa(id=idtarefa)  # Passando o parâmetro correto 'id' para o construtor
-    tarefa.apagarTarefa()  # Chama o método para apagar a tarefa
+    tarefa = Tarefa(id=idtarefa)
+    tarefa.apagarTarefa()
     return redirect(url_for('index'))
 
+@app.route('/editar/<int:idtarefa>', methods=['GET', 'POST'])
+def editar(idtarefa):
+    tarefa = Tarefa(id=idtarefa)
+
+    if request.method == 'POST':
+        novo_titulo = request.form['titulo']
+        nova_data_conclusao = request.form['data_conclusao']
+        tarefa.editarTarefa(novo_titulo, nova_data_conclusao)
+        return redirect(url_for('index'))
+
+    # Exibe os dados da tarefa no formulário
+    return render_template("editar.html", tarefa=tarefa)
+
+if __name__ == "__main__":
+    app.run(debug=True)
